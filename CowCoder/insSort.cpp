@@ -11,16 +11,20 @@
 #include<stack>
 
 using namespace std;
+//insert order : the best conditon compare n-1,dont move element; this is the conditon of element self is ordered;
+//and it needs only a extra space;
+//average :time complexity:O(n^2) space:O(1)
+//ac in CowCode
 void insSort(int * A ,int n)
 {
     int key = 0,k=0;
     for(int i =1 ;i<n;i++)
     {
         key = A[i];
-        for( k=i-1;key<A[k];k-- )
+        for( k=i-1;k>-1;k-- )
         {
-            if(k == 0) { k--;break;}
-            A[k+1] = A[k];
+            if(A[k] > key)  A[k+1] = A[k];
+            else break;
         }
         A[++k] = key;
     }
